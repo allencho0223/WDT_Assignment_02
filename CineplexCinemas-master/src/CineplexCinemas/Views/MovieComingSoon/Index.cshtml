@@ -1,0 +1,28 @@
+@model IEnumerable<CineplexCinemas.Models.MovieComingSoon>
+
+@{
+    ViewData["Title"] = "MovieComingSoon";
+}
+<div id="Movies">
+    <h2>@ViewData["Title"]</h2>
+
+    <table class="table panel panel-default">
+        <tbody>
+            @foreach (var item in Model)
+            {
+                // MovieComingSoon images and short description are used only for educational purposes
+                // from google.com
+                <tr>
+                    <td class="col-lg-4">
+                        <img src="@Url.Content("~/" + @item.ImageUrl)" class="img-responsive" />
+                    </td>
+                    <td class="col-lg-4">
+                        <h2>@Html.DisplayFor(modelItem => item.Title)</h2><br />
+                        @Html.DisplayFor(modelItem => item.ShortDescription)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

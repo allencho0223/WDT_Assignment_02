@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Events";
+}
+
+<div class="page">
+    <div id="events">
+        <div class="panel panel-default">
+            <h1>@ViewData["Title"]</h1>
+            <img src="~/images/privateHire.jpg" class="img-responsive" style="display:block; margin: 0 auto"/>
+
+            <p>
+                Each Cineplex Cinema has a unique space which lends itself to a range of opportunities for
+                private hire for up to a maximum of 85 people. If you need a day venue for a press launch,
+                screening, photo shoot, presentation or conference, we have the ideal space, the technology,
+                the food, the drink and the service to make it happen. Contact us below to make it happen!
+            </p>
+
+
+            <hr />
+            <h1>Private Venue Enquiry</h1>
+            @Html.Partial("_ContactFormPartial")
+        </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="container">
+    <div class="col-md-8">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000" data-pause="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="~/images/Movies/StarWars-LastJedi.jpg" alt="Star Wars The Last Jedi" class="img-responsive" />
+                </div>
+                <div class="item">
+                    <img src="~/images/Movies/cocoDisney.jpg" alt="CoCo Disney" class="img-responsive" />
+                </div>
+                <div class="item">
+                    <img src="~/images/Movies/GuardiansOfTheGal2.jpg" alt="Guardians of the Galaxy, Volume 2" class="img-responsive" />
+                </div>
+                <div class="item">
+                    <img src="~/images/Movies/despicableme3.jpg" alt="Despicable Me 3" class="img-responsive" />
+                </div>
+                <div class="item">
+                    <img src="~/images/Movies/WonderWoman.jpg" alt="Wonder Woman 2017" class="img-responsive" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div id="myCarousel" class="carousel" data-ride="carousel" data-interval="6000" data-pause="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <h3>Star Wars - The Last Jedi (M)</h3>
+                    @Html.ActionLink("Book Now!", "Sessions", "CineplexMovies", new { movieName = "Star Wars: The Last Jedi" }, new { @class = "button" })<br />
+                </div>
+                <div class="item">
+                    <h3>Coco (PG)</h3>
+                    @Html.ActionLink("Book Now!", "Sessions", "CineplexMovies", new { movieName = "Coco" }, new { @class = "button" })<br />
+                </div>
+                <div class="item">
+                    <h3>Guardians of the Galaxy, Volume 2 (M)</h3>
+                    @Html.ActionLink("Book Now!", "Sessions", "CineplexMovies", new { movieName = "Guardians of the Galaxy: Volume 2" }, new { @class = "button" })<br />
+                </div>
+                <div class="item">
+                    <h3>Despicable Me 3 (PG)</h3>
+                    @Html.ActionLink("Book Now!", "Sessions", "CineplexMovies", new { movieName = "Despicable Me 3" }, new { @class = "button" })<br />
+                </div>
+                <div class="item">
+                    <h3>Wonder Woman (M)</h3>
+                    @Html.ActionLink("Book Now!", "Sessions", "CineplexMovies", new { movieName = "Wonder Woman" }, new { @class = "button" })<br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <h2>ABC Cineplex Corporation</h2>
+        <p>
+            ABC Cineplex Corporation established 5 different luxury Movie Plaza Theaters in Victoria state.
+            With a dedicated concierge team, customers can relax and enjoy a private bar complete.
+            Cineplex Cinemas also have a variety of facilities apart from just watching movies. There are food court,
+            playgrounds for children. Moreover, customers are able to request special events through the website.
+        </p>
+    </div>
+
+    @*</br>
+    <div class="col-md-4">
+        <h2>Cinema Information #2</h2>
+    </div>
+    </br>
+    <div class="col-md-4">
+        <h2>Cinema Information #3</h2>
+    </div>*@
+</div>
+
+

@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cineplex Cinema</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/SharedLayout.css" />
+
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet">
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
+</head>
+<body>
+    <div id="Title">
+        <h1>Cineplex</h1>
+        <h4>Cinema</h4>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="navbar navbar-inverse">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav nav-pills pull-left">
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-area="" asp-controller="Movies" asp-action="Index">Movies</a></li>
+                            <li><a asp-area="" asp-controller="Cineplexes" asp-action="Index">Cinemas</a></li>
+                            <li><a asp-area="" asp-controller="Enquiries" asp-action="Events">Events</a></li>
+                            <li><a asp-area="" asp-controller="CineplexMovies" asp-action="Index">Sessions</a></li>
+                            <li><a asp-area="" asp-controller="Cart" asp-action="Index">Shopping Cart</a></li>
+                        </ul>
+                        @await Html.PartialAsync("_LoginPartial")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <hr class="style" />
+        @RenderBody()
+        <hr class="style" />
+        <footer>
+            <div id="footerLinks">
+                <div class="col-md-2">
+                    <h4>Home</h4>
+                    <ul>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h4>Movies</h4>
+                    <ul>
+                        <li><a asp-area="" asp-controller="Movies" asp-action="Index">Movies</a></li>
+                        <li><a asp-area="" asp-controller="MovieComingSoon" asp-action="Index">Movies Coming Soon</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-2">
+                    <h4>Booking</h4>
+                    <ul>
+                        <li><a asp-area="" asp-controller="Bookings" asp-action="Index">Booking</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h4>Cineplexes</h4>
+                    <ul>
+                        <li><a asp-area="" asp-controller="Cineplexes" asp-action="Index">Cineplexes</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h4>Cineplex Movies</h4>
+                    <ul>
+                        <li><a asp-area="" asp-controller="CineplexMovies" asp-action="Index">Cineplex Movies</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h4>Enquiry</h4>
+                    <ul>
+                        <li><a asp-area="" asp-controller="Enquiries" asp-action="Events">Event</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr />
+            <div id="baseFooter">
+                <p class="pull-left">James McLennan, s3543182 | Minyoung Cho, s3558745</p> <p class="pull-right">&copy; 2017 - CineplexCinemas</p>
+            </div>
+        </footer>
+    </div>
+
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script>
+            var itemsAddedToCart = 0;
+
+            function moviePopup() {
+                document.getElementById('seatsLeft').hidden = false;
+            }
+
+            function changeNumber() {
+                var ticketOptionAdult = document.getElementById('numberOfAdults');
+                var ticketOptionConc = document.getElementById('numberOfConc');
+
+                var numberAdults = parseInt(ticketOptionAdult.options[ticketOptionAdult.selectedIndex].value);
+                var numberConc = parseInt(ticketOptionConc.options[ticketOptionConc.selectedIndex].value);
+                var totalNumberTickets = parseInt(numberAdults + numberConc);
+                var totalItemsInCart = document.getElementById('cartId');
+
+                if (totalNumberTickets <= 5 || itemsAddedToCart <= 4)
+                {
+                    var totalAdult = numberAdults * 45;
+                    var totalConc = numberConc * 20;
+
+                    document.getElementById('total').innerHTML = "Total Price: Adults: $" + totalAdult + ".00, Concession's: $" + totalConc + ".00";
+                    document.getElementById('addToCart').disabled = false;
+
+                }
+                else
+                {
+                    document.getElementById('total').innerHTML = "You cannot purchase more than 5 tickets per session!";
+                    document.getElementById('addToCart').disabled = true;
+                }
+
+            }
+
+            function updateItemsAdded() {
+                itemsAddedToCart++;
+            }
+
+            function updateItemsRemoved() {
+                --itemsAddedToCart;
+                document.getElementById('cartTotal').innerHTML = "(Removed) items left " + itemsAddedToCart;
+            }
+        </script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

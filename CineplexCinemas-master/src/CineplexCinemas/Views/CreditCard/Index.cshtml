@@ -1,0 +1,102 @@
+﻿@model CreditCard
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Credit Card Process</h2>
+
+
+
+@*<script src="~/js/card.js"></script>
+
+<div class='card-wrapper'></div><br />*@
+
+<script src="~/js/cardexpiry.js"></script>
+
+<form asp-controller="Bookings" asp-action="finaliseBookings" onsubmit="return expiryChecker()">
+
+    <div class="form-horizontal">
+        <h4>Credit Card Details for @ViewData["name"]</h4>
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label  class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <img src='~/images/visa.jpg' width='60' height='35' />
+                        <input id="visa" type='radio' name='cardOption' value='visa' />
+                    <img src='~/images/master.jpg' width='60' height='35' />
+                        <input id="master" type='radio' name='cardOption' value='master' />
+                    <img src='~/images/american.jpg' width='60' height='35' />
+                        <input id="american" type='radio' name='cardOption' value='american express' />
+                </div>
+         </div>
+
+            <div class="form-group">
+                <label asp-for="CardNumber" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="CardNumber" class="form-control" />
+                    <span asp-validation-for="CardNumber" class="text-danger" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FirstName" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="FirstName" class="form-control" />
+                    <span asp-validation-for="FirstName" class="text-danger" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="LastName" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="LastName" class="form-control" />
+                    <span asp-validation-for="LastName" class="text-danger" />
+                </div>
+            </div>
+
+            @*<div class="form-group">
+                <label asp-for="ExpiryDate" name="expiry" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="ExpiryDate"name="expiry" class="form-control" />
+                    <span asp-validation-for="ExpiryDate" class="text-danger" />
+                </div>
+            </div>*@
+
+            <div class="form-group">
+                <label asp-for="ExpiryMonth" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="ExpiryMonth" id="expiryMonth" class="form-control" />
+                    <span asp-validation-for="ExpiryMonth" class="text-danger" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ExpiryYear" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="ExpiryYear" id="expiryYear" class="form-control" />
+                    <span asp-validation-for="ExpiryYear" class="text-danger" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CVC" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="CVC" class="form-control" />
+                    <span asp-validation-for="CVC" class="text-danger" />
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

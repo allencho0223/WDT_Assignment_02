@@ -1,0 +1,75 @@
+﻿@model cartItem
+
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+}
+<form asp-controller="Cart" asp-action="confirmationToCart">
+    <h1>Booking</h1>
+    <div class="col-md-8 form-horizontal">
+        <h3>Select Tickets</h3>
+        <div class="form-group">
+            <label asp-for="numberOfAdults" class="col-md-2 control-label">Adults - $45.00</label>
+            <div class="col-md-1">
+                <select asp-for="numberOfAdults" class="form-control dropDownList" onchange="changeNumber()">
+                    <option selected="selected" value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <span asp-validation-for="numberOfAdults" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="numberOfConc" class="col-md-2 control-label">Conc. - $20.00</label>
+            <div class="col-md-1">
+                <select asp-for="numberOfConc" class="form-control dropDownList" onchange="changeNumber()">
+                    <option selected="selected" value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <span asp-validation-for="numberOfConc" class="text-danger" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+            <h3>Session Details</h3>
+            Location: @ViewData["Location"] <br />
+            Movie: @ViewData["Film"] <br />
+            Date: @ViewData["SessionDate"] <br />
+            Time: @ViewData["SessionTime"] <br />
+            <p id="total">Total Price:</p>
+    </div>
+    <div class="form-group">
+        <input asp-for="cineplxId" value="@ViewData["CinemaId"]" hidden/>
+        <input asp-for="movieId" value="@ViewData["movieId"]" hidden />
+        <input asp-for="sessionId" value="@ViewData["sessionId"]" hidden />
+    </div>
+    <div class="col-md-12">
+            <h3>Customer Details</h3>
+            <label asp-for="customerName" class="col-md-1 control-label">Name</label>
+            <div class="col-md-7">
+                <input asp-for="customerName" class="form-control" />
+                <span asp-validation-for="customerName" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <div class="col-md-2">
+                    <input id="addToCart" type="submit" value="Add to cart" class="button" onclick="updateItemsAdded()" />
+                </div>
+            </div>
+    </div>
+</form>
+@ViewData["size"]
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

@@ -1,0 +1,94 @@
+﻿<div class="panel panel-default" id="cart">
+    <h2>Shopping Cart</h2>
+
+    <hr />
+    @if (ViewData["LocationId"] != null)
+    {
+        <p>
+            Item 1:
+            Cinema Location (ID): @ViewData["LocationId"]<br />
+            Movie (ID): @ViewData["MovieId"]<br />
+            Session (ID): @ViewData["SessionID"]<br />
+            Name on Booking: @ViewData["Name"]<br />
+            Number of Adults: @ViewData["noAdults"]<br />
+            Number of Concessions: @ViewData["noConcession"]<br />
+            @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] }, new { onclick = "updateItemsRemoved();" })
+            <br />
+        </p>
+    }
+    <hr />
+    @if (ViewData["LocationId1"] != null)
+    {
+        <p>
+            Item 2:
+            Cinema Location (ID): @ViewData["LocationId1"]<br />
+            Movie (ID): @ViewData["MovieId1"]<br />
+            Session (ID): @ViewData["SessionID1"]<br />
+            Name on Booking: @ViewData["Name1"]<br />
+            Number of Adults: @ViewData["noAdults1"]<br />
+            Number of Concessions: @ViewData["noConcession1"]<br />
+            @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] }, new { onclick = "updateItemsRemoved();" })
+            <br />
+        </p>
+    }
+    @if (ViewData["LocationId2"] != null)
+    {
+        <p>
+            Item 3:
+            Cinema Location (ID): @ViewData["LocationId2"]<br />
+            Movie (ID): @ViewData["MovieId2"]<br />
+            Session (ID): @ViewData["SessionID2"]<br />
+            Name on Booking: @ViewData["Name2"]<br />
+            Number of Adults: @ViewData["noAdults2"]<br />
+            Number of Concessions: @ViewData["noConcession2"]<br />
+            @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] }, new { onclick = "updateItemsRemoved();" })
+            <br />
+        </p>
+    }
+    @if (ViewData["LocationId3"] != null)
+    {
+        <p>
+            Item 4:
+            Cinema Location (ID): @ViewData["LocationId3"]<br />
+            Movie (ID): @ViewData["MovieId3"]<br />
+            Session (ID): @ViewData["SessionID3"]<br />
+            Name on Booking: @ViewData["Name3"]<br />
+            Number of Adults: @ViewData["noAdults3"]<br />
+            Number of Concessions: @ViewData["noConcession3"]<br />
+            @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] }, new { onclick = "updateItemsRemoved();" })
+            <br />
+        </p>
+    }
+    @if (ViewData["LocationId4"] != null)
+    {
+        <p>
+            Item 5:
+            Cinema Location (ID): @ViewData["LocationId4"]<br />
+            Movie (ID): @ViewData["MovieId4"]<br />
+            Session (ID): @ViewData["SessionID4"]<br />
+            Name on Booking: @ViewData["Name4"]<br />
+            Number of Adults: @ViewData["noAdults4"]<br />
+            Number of Concessions: @ViewData["noConcession4"]<br />
+            @Html.ActionLink("Delete", "DeleteFromCart", "Cart", new { itemId = ViewData["CartItemNo"] }, new { onclick = "updateItemsRemoved();" })
+        </p>
+    }
+    @if (ViewData["LocationId"] != null)
+    {
+        <p>
+            @ViewData["WarningTime"]
+        </p>
+    }
+    else
+    {
+        <p>
+            @ViewData["EmptyCart"]
+        </p>
+    }
+    <form asp-controller="CheckOut" asp-action="Index">
+        <div>
+            <input type="submit" value="Book Now" class="button" />
+        </div>
+    </form>
+
+    <p id="cartTotal"></p>
+</div>

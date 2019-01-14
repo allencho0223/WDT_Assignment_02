@@ -1,0 +1,91 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var previousCineplex = "None";
+    DateTime DayToDisplay = new DateTime(1996, 05, 10);
+}
+<table class="table borderless panel panel-default" id="sessionTimes">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            DayToDisplay = item.Session.SessionDateTime;
+            break;
+        }
+        @foreach (var item in Model)
+        {
+            if (!item.Cineplex.Location.Equals(previousCineplex))
+            {
+                previousCineplex = item.Cineplex.Location;
+
+                   <tr>
+                        <td>
+                            <h2>@previousCineplex Session Times</h2>
+                        </td>
+                   </tr>
+                DayToDisplay = item.Session.SessionDateTime;
+                <tr>
+                        <td id="dateOfSession">
+                            <h3>@DayToDisplay.DayOfWeek, @DayToDisplay.Day/@DayToDisplay.Month/@DayToDisplay.Year</h3>
+                        </td>
+                    <td id="dateOfSession"></td>
+                    </tr>
+                    <tr>
+                        <td id="contentsOfSession">
+                            @item.Session.FilmMovie.Title |
+                            @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
+                            }@time
+                        </td>
+                        <td>
+                            @Html.ActionLink("Book Now!", "sessionDetails", "Bookings", new { cineplexId = item.CineplexId, movieId = item.MovieId, sessionId = item.SessionId }, new { @class = "button" })
+                            <span id="seatsLeft">Seats Available: @item.Session.SeatsAvailable/@item.Session.SeatsTotal</span>
+                        </td>
+                    </tr>
+               }
+                                else
+                                {
+                                    if (!item.Session.SessionDateTime.DayOfWeek.Equals(DayToDisplay.DayOfWeek))
+                                    {
+                                        DayToDisplay = item.Session.SessionDateTime;
+                    <tr>
+                        <td id="dateOfSession">
+                            <h3>@DayToDisplay.DayOfWeek, @DayToDisplay.Day/@DayToDisplay.Month/@DayToDisplay.Year</h3>
+                        </td>
+                        <td id="dateOfSession">
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="contentsOfSession">
+                            @item.Session.FilmMovie.Title |
+                            @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
+                            }@time
+                        </td>
+                        <td>
+                            @Html.ActionLink("Book Now!", "sessionDetails", "Bookings", new { cineplexId = item.CineplexId, movieId = item.MovieId, sessionId = item.SessionId }, new { @class = "button" })
+                            <span id="seatsLeft">Seats Available: @item.Session.SeatsAvailable/@item.Session.SeatsTotal</span>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td id="contentsOfSession">
+                            @item.Session.FilmMovie.Title |
+                            @{string time = item.Session.SessionDateTime.ToString("hh:mm tt");
+                            }@time
+                        </td>
+                        <td>
+                            @Html.ActionLink("Book Now!", "sessionDetails", "Bookings", new { cineplexId = item.CineplexId, movieId = item.MovieId, sessionId = item.SessionId }, new { @class = "button" })
+                            <span id="seatsLeft">Seats Available: @item.Session.SeatsAvailable/@item.Session.SeatsTotal</span>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+
+    </tbody>
+</table>
+
+
+

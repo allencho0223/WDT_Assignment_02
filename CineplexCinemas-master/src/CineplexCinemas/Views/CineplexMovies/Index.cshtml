@@ -1,0 +1,25 @@
+@model IEnumerable<CineplexCinemas.Models.CineplexMovie>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="col-md-12 panel panel-default" id="filterSessions">
+    <div class="col-md-6" id="filterItemsList">
+        <h2>Search by Cinema</h2>
+        @Html.ActionLink("St Kilda", "Sessions", new { cinemaName = "St Kilda" }, new { @class = "button" })<br />
+        @Html.ActionLink("Fitzroy", "Sessions", new { cinemaName = "Fitzroy" }, new { @class = "button" })<br />
+        @Html.ActionLink("Melbourne CBD", "Sessions", new { cinemaName = "Melbourne CBD" }, new { @class = "button" })<br />
+        @Html.ActionLink("Sunshine", "Sessions", new { cinemaName = "Sunshine" }, new { @class = "button" })<br />
+        @Html.ActionLink("Lilydale", "Sessions", new { cinemaName = "Lilydale" }, new { @class = "button" })<br />
+    </div>
+    <div class="col-md-6" id="filterItemsList">
+        <h2>Search by Movie</h2>
+        @Html.ActionLink("Star Wars: The Last Jedi", "Sessions", new { movieName = "Star Wars: The Last Jedi" }, new { @class = "button" })<br />
+        @Html.ActionLink("Guardians of the Galaxy: Volume 2", "Sessions", new { movieName = "Guardians of the Galaxy: Volume 2" }, new { @class = "button" })<br />
+        @Html.ActionLink("Coco", "Sessions", new { movieName = "Coco" }, new { @class = "button" })<br />
+        @Html.ActionLink("Despicable Me 3", "Sessions", new { movieName = "Despicable Me 3" }, new { @class = "button" })<br />
+        @Html.ActionLink("Wonder Woman", "Sessions", new { movieName = "Wonder Woman" }, new { @class = "button" })<br />
+    </div>
+</div>
+<hr />

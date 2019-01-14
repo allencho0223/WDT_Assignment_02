@@ -1,0 +1,41 @@
+﻿@{ 
+    var bookingTracker = 0;
+}
+<div class="panel panel-default" id="confirmationPage">
+    <h2>Booking Confirmation</h2>
+    <hr />
+    <p>You have successfully booked for the below sessions. Please ensure you take down these numbers as it is required to be presented at the cinema upon arrival.</p>
+    <hr />
+    @foreach (var item in ViewBag.bookingIds)
+    {
+        if(bookingTracker != item)
+        {
+            foreach (var booking in ViewBag.bookingDetails)
+            {
+                if (booking.BookingId.Equals(item) && !bookingTracker.Equals(item))
+                {
+                    foreach (var session in ViewBag.sessionList)
+                    {
+                        if (booking.sessionId.Equals(session.SessionId))
+                        {
+                            foreach (var cineplex in ViewBag.cineplexList)
+                            {
+                                if (booking.cineplxId.Equals(cineplex.CineplexId))
+                                {
+                                    bookingTracker = item;
+                                    <span>Booking Number:<b> @item </b>- Adults: @booking.numberOfAdults, Concession's: @booking.numberOfConc<br />Playing at: <b><i>@cineplex.Location</i></b> on <b><i>@session.SessionDateTime</i></b><br /></span>
+                                    <hr />
+                                    break;
+                                }
+
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    <a asp-area="" asp-controller="Home" asp-action="Index" class="button">Return Home</a>
+    <a asp-area="" asp-controller="CineplexMovies" asp-action="Index" class="button">Find more sessions!</a>
+</div>

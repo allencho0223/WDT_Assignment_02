@@ -1,0 +1,19 @@
+﻿@model CineplexCinemas.Models.Enquiry
+
+@{
+    ViewData["Title"] = "Thank you!";
+}
+
+<div class="page">
+    <div id="events">
+        <div class="panel panel-default">
+            <h1>@ViewData["Title"]</h1>
+            <p>
+                Your message has been received. We will aim to be in touch with you within 3-5 Business Days.
+            </p>
+            <div id="returnHome">
+                <a asp-controller="Home" asp-action="Index" class="button">Back home</a>
+            </div>
+        </div>
+    </div>
+</div>

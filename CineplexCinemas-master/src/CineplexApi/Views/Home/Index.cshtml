@@ -1,0 +1,135 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/style/bootstrap.min.css">
+    <script type="text/javascript" src="~/Scripts/jquery-3.2.1.min.js"></script>
+</head>
+<body style="background-color:dimgray; color:white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2>Customer Enquiry Manager - Admin</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <form>
+                    <div class="form-group">
+                        <label for="enquiryid">Enquiry ID</label>
+                        <select class="form-control" id="enquiryid"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input class="form-control" id="email" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label for="eventmsg">Event Message</label>
+                        <input class="form-control" id="eventmsg" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label for="eventdate">Event Date</label>
+                        <input class="form-control" id="eventdate" type="text" />
+                    </div>
+                    <input type="button" id="update" value="Update" class="btn btn-default" />
+                    <input type="button" id="delete" value="Delete" class="btn btn-default" />
+                </form>
+            </div>
+        </div>
+        <div class="row">
+           <div class="col-md-6 col-md-offset-3">
+               <div id="msg"></div>
+           </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Filling the dropdown list with EnquiryID
+            var options = {};
+            options.url = "http://localhost:15956/api/customerevent";
+            options.type = "GET";
+            options.dataType = "json";
+            options.success = function (data) {
+                data.forEach(function (element) {
+                    $("#enquiryid").append("<option>"
+                    + element.enquiryID + "</option>");
+                });
+            };
+            options.error = function () {
+                $("#msg").html("Error while calling the Web API!");
+            };
+            $.ajax(options);
+
+
+            //getting event's information
+            $("#enquiryid").change(function () {
+                var options = {};
+                options.url = "http://localhost:15956/api/customerevent/" + 
+                               $("#enquiryid").val();
+                options.type = "GET";
+                options.dataType = "json";
+                options.success = function (data) {
+                    $("#email").val(data.email);
+                    $("#eventmsg").val(data.message);
+                    $("#eventdate").val(data.eventDate);
+                };
+                options.error = function (a, b, c) {
+                    alert(a.responseText);
+                    $("#msg").html("Error while calling the Web API!");
+                };
+                $.ajax(options);
+            });
+
+            //modifying Event
+            $("#update").click(function () {
+                var options = {};
+                options.url = "http://localhost:15956/api/customerevent/"
+                              + $("#enquiryid").val();
+                options.type = "PUT";
+
+                var obj = {};
+                obj.EnquiryID = $("#enquiryid").val();
+                obj.Email = $("#email").val();
+                obj.Message = $("#eventmsg").val();
+                obj.EventDate = $("#eventdate").val();
+
+                options.data = JSON.stringify(obj);
+                options.contentType = "application/json";
+                options.dataType = "html";
+                options.success = function (msg) {
+                    $("#msg").html(msg);
+                };
+                options.error = function (a, b, c) {
+                    alert(c);
+                    $("#msg").html("Error while calling the Web API!");
+                };
+                $.ajax(options);
+            });
+
+            //deleting Event
+            $("#delete").click(function () {
+                var options = {};
+                options.url = "http://localhost:15956/api/customerevent/"
+                              + $("#enquiryid").val();
+                options.type = "DELETE";
+                options.dataType = "html";
+                options.success = function (msg) {
+                    $("#msg").html(msg);
+                };
+                options.error = function () {
+                    $("#msg").html("Error while calling the Web API!");
+                };
+                $.ajax(options);
+            });
+
+        });
+    </script>
+</body>
+</html>

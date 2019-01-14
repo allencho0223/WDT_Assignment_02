@@ -1,0 +1,21 @@
+@model CineplexCinemas.Models.Movie
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div id="Movies" class="table panel panel-default">
+    <h2>@Model.Title</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            <img src="@Url.Content("~/"+Model.ImageUrl)" class="img-responsive" />
+        </dd>
+    </dl>
+    <p id="movieDescrip">
+        @Html.DisplayFor(model => model.ShortDescription)
+    </p>
+    @Html.ActionLink("Find Sessions", "Sessions", "CineplexMovies", new { movieName = Model.Title }, new { @class = "button", style="margin-bottom:10px;" })<br />
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

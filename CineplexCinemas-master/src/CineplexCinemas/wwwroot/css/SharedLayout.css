@@ -1,0 +1,287 @@
+﻿/******
+GENERAL SECTION    
+******/
+html, body {
+    background-image: url(/images/footer_lodyas.png);
+    padding-top: 0px;
+    font-family: 'Droid Sans', sans-serif;
+    color: white;
+}
+
+hr.style {
+	border-top: 3px double #8c8b8b;
+}
+
+.button {
+    background-color: #363636;
+	border: 2px solid #2b2b2b;
+	border-radius: 8px;
+	color: white;
+	padding: 10px 16px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+}
+
+.button:hover {
+	background-color: #4a4a4a;
+	color: white;
+    text-decoration:none;
+}
+.button:disabled {
+    background-color:#D3D3D3;
+    color:black;
+}
+/******
+TITLE SECTION    
+******/
+#Title {
+    font-family: 'Lobster', cursive;
+    font-size: 20px;
+    text-align: center;
+    color: red;
+    padding-bottom: 5px;
+}
+
+#Title h4 {
+    padding: 0px;
+    text-decoration: overline;
+}
+
+/******
+NAVBAR SECTION    
+******/
+.nav {
+    margin: 10px;
+    color: white;
+}
+
+.nav a {
+    color: white;
+    font-size: medium;
+}
+
+.nav a:hover {
+    background-color: black;
+    color: red;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+  background-color: #363636;
+}
+
+/******
+FOOTER SECTION    
+******/
+#footerLinks {
+    font-size: 12px;
+}
+
+#baseFooter {
+    font-size: 10px;
+    color: grey;
+}
+
+/******
+EVENTS SECTION    
+******/
+#events {
+    text-align: center;
+}
+
+.panel {
+    background-color: #37393e;
+    border-color: #37393e;
+}
+
+#events p {
+    padding-top: 10px;
+    display: inline-block;
+    width: 75%;
+}
+
+#events img {
+    border-radius: 5px;
+}
+
+#events h1 {
+     font-family: 'Lobster', cursive;
+     color: red;
+}
+
+/******
+Enquiries SECTION    
+******/
+.contactForm {
+    text-align:left;
+}
+
+textarea {
+    resize:none;
+}
+
+#returnHome {
+    padding-bottom:10px;
+}
+
+/*****
+Cinemas SECTION
+*****/
+#Cinemas {
+    text-align: center;
+}
+
+#Cinemas h2 {
+    font-family: 'Lobster', cursive;
+    color: red;
+}
+
+#cinemaDescrip {
+    margin:40px;
+    margin-bottom:20px;
+}
+/****
+Movies SECTION
+***/
+
+#Movies {
+    text-align: center;
+}
+
+#Movies h2 {
+    font-family: 'Lobster', cursive;
+    color: red;
+}
+#movieDescrip {
+    margin:40px;
+    margin-bottom:20px;
+}
+/******
+Sessions SECTION
+******/
+
+#filterSessions {
+    text-align: center;
+    padding:20px;
+}
+
+#filterItemsList h2{
+    font-family: 'Lobster', cursive;
+    color: red;
+}
+
+
+.table.borderless td{
+    border-top: 0;
+    height: 100px;
+}
+
+#sessionTimes {
+}
+
+#sessionTimes h2{
+    font-family: 'Lobster', cursive;
+    color: red;
+    text-align:center;
+}
+
+#sessionTimes tr td{
+    height:10px;
+}
+
+#sessionTimes #dateOfSession {
+    background-color: #5e6064;
+    padding-left:50px;
+}
+#sessionTimes #contentsOfSession {
+    padding-left: 100px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/******
+Booking SECTION
+*******/
+
+.ticketDisplay tr td{
+    width:20%
+}
+
+.dropDownList {
+    color:black;
+    width:20%;
+    min-width:70px;
+    margin-bottom:20px;
+}
+
+.nameField {
+    color:black;
+}
+
+#confirmationPage{
+    padding: 20px;
+}
+
+#confirmationPage b{
+    color: red;
+}
+#confirmationPage h2{
+    font-family: 'Lobster', cursive;
+    color: red;
+    text-align:center;
+}
+
+/******
+Cart SECTION
+*/
+
+#cart {
+    padding: 20px;
+}
+
+#cart h2 {
+    font-family: 'Lobster', cursive;
+    color: red;
+    text-align:center;
+}
